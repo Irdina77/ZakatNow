@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { addDoc, collection } from "firebase/firestore";
+import { auth, db } from "../firebase";
 import { motion } from "framer-motion";
 
 import maybankLogo from "../assets/maybank.png";
@@ -125,28 +127,102 @@ export default function PaymentCard({ payment, onPay, onBack }) {
     }
   };
 
-  const completePayment = (event) => {
-    if (event) event.preventDefault();
+ const completePayment = async (event) => {
+  if (event) event.preventDefault();
 
-    setIsProcessing(true);
+  setIsProcessing(true);
 
-    setTimeout(() => {
-      if (onPay) {
-        onPay({
-          ...payment,
-          gateway: selectedGateway,
-          bankName:
-            selectedGateway === "FPX Online Banking" ? selectedBank : "JomPay",
-          transactionId: generateTransactionId(),
-          amount: amountNumber,
-          status: "Success",
-        });
+  try {
+    const user = auth.currentUser;
+
+    const transactionId =
+      generateTransactionId();
+
+    // SAVE TO FIRESTORE
+    await addDoc(
+      collection(db, "paymentHistory"),
+      {
+        userId: user?.uid || "",
+        fullName:
+          localStorage.getItem(
+            "registeredFullName"
+          ) || "User",
+
+        email:
+          localStorage.getItem(
+            "registeredEmail"
+          ) || "",
+
+        date:
+          new Date().toLocaleString(),
+
+        year:
+          payment?.selectedYear || "2026",
+
+        state:
+          payment?.selectedState ||
+          "Selangor",
+
+        businessMethod:
+          payment?.businessMethod ||
+          "UntungRugi",
+
+        gateway:
+          selectedGateway,
+
+        bankName:
+          selectedGateway ===
+          "FPX Online Banking"
+            ? selectedBank
+            : "JomPay",
+
+        transactionId,
+
+        total:
+          payment?.total || 0,
+
+        zakat:
+          amountNumber,
+
+        status: "Success",
       }
+    );
 
-      setIsProcessing(false);
-      setStep("success");
-    }, 900);
-  };
+    // Existing onPay
+    if (onPay) {
+      onPay({
+        ...payment,
+        gateway:
+          selectedGateway,
+
+        bankName:
+          selectedGateway ===
+          "FPX Online Banking"
+            ? selectedBank
+            : "JomPay",
+
+        transactionId,
+        amount: amountNumber,
+        status: "Success",
+      });
+    }
+
+    setIsProcessing(false);
+    setStep("success");
+
+  } catch (error) {
+    console.error(
+      "Payment save error:",
+      error
+    );
+
+    alert(
+      "Payment failed to save."
+    );
+
+    setIsProcessing(false);
+  }
+};
 
   const renderStepIndicator = () => {
     const steps = ["Payment Method", "Pay", "Thank You"];

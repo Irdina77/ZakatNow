@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../firebase";
 import { useLanguage } from "../context/LanguageContext";
 import { getTranslationSection } from "../translations/translations";
 import "../Styles/Register.css";
@@ -66,11 +67,22 @@ function Register({ onRegisterSuccess, onBackToLogin }) {
 const cleanPassword =
   password.trim();
 
-await createUserWithEmailAndPassword(
-  auth,
-  cleanEmail,
-  cleanPassword
-);
+const userCredential =
+  await createUserWithEmailAndPassword(
+    auth,
+    cleanEmail,
+    cleanPassword
+  );
+
+const user = userCredential.user;
+
+// save to firestore
+await setDoc(doc(db, "Users", user.uid), {
+  fullName: username,
+  email: cleanEmail,
+  role: "customer",
+  createdAt: new Date(),
+});
 
 // SAVE USER DATA
 localStorage.setItem(
