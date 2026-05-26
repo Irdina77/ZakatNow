@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+
+.glass-page-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  background: #1a1a1a; 
+}
+
+.glass-page-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('../assets/gold_theme_bg1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+/* Frosted Glass Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 28px;
+  padding: 45px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.title {
+  font-family: 'Cinzel', serif;
+  text-align: center;
+  
+  /* Modern Premium Gold Gradient (Lighter, brighter, more luminous) */
+  background: linear-gradient(135deg, #fffceb 0%, #ffdf91 40%, #d4af37 60%, #b58d3d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  
+  /* Fallback color if background-clip isn't supported */
+  color: #d4af37; 
+  -webkit-text-fill-color: transparent; 
+  
+  /* Luminous Glow: Simulates light reflecting off polished gold */
+  filter: drop-shadow(0 0 10px rgba(255, 239, 161, 0.6)) 
+          drop-shadow(0 3px 2px rgba(0,0,0,0.4));
+  
+  font-size: 38px; /* Slightly larger to enhance presence */
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: 1.5px; /* Added spacing for a cleaner, wider feel */
+  text-transform: capitalize; /* Ensure nice capitalization */
+}
+
+.subtitle {
+  text-align: center;
+  color: #f7e8bf; 
+  font-size: 14px;
+  margin-bottom: 35px;
+  opacity: 0.9;
+}
+
+/* Floating Label Inputs */
+.floating-group {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.floating-group input {
+  width: 100%;
+  padding: 24px 16px 10px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: #ffffff; /* Explicit bright white for typed text */
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.floating-group label {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* The Float Effect */
+.floating-group input:focus + label,
+.floating-group input:not(:placeholder-shown) + label {
+  top: 14px;
+  font-size: 11px;
+  color: #f7e8bf;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.floating-group input:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #f7e8bf;
+  box-shadow: 0 0 15px rgba(247, 232, 191, 0.2);
+}
+
+/* Glassy Gold Button */
+.btn-glass-gold {
+  width: 100%;
+  padding: 16px;
+  margin-top: 10px;
+  background: linear-gradient(135deg, #c89b3c, #8b6526);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-glass-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(200, 155, 60, 0.4);
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 25px;
+  color: white;
+  font-size: 14px;
+}
+
+.auth-link span {
+  color: #f7e8bf;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.message {
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 13px;
+  backdrop-filter: blur(5px);
+}
+.message.success { background: rgba(34, 197, 94, 0.2); color: #87ff87; }
+.message.error { background: rgba(239, 68, 68, 0.2); color: #ff8787; }
