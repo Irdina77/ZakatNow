@@ -1,0 +1,81 @@
+/* Background */
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #423417, #8b6526);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Card */
+.card {
+  background: #fff8e8;
+  padding: 40px;
+  border-radius: 16px;
+  width: 360px;
+  border: 1px solid #c89b3c;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Title */
+.title {
+  font-family: 'Cinzel', serif;
+  text-align: center;
+  color: #8b6526;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #423417;
+  margin-bottom: 20px;
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form label {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.form input,
+.form select {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #c89b3c;
+  border-radius: 8px;
+  outline: none;
+}
+
+/* Buttons */
+.btn-dark {
+  background: #423417;
+  color: #fff8e8;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.btn-dark:hover {
+  background: #8b6526;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #c89b3c;
+  color: #423417;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: #f7e5bf;
+}

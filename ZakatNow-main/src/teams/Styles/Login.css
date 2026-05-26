@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* ===== BASE ===== */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ===== BACKGROUND ===== */
+.glass-page-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.glass-page-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/gold_theme_bg1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+/* ===== CARD ===== */
+.glass-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 400px;
+  padding: 45px;
+  border-radius: 28px;
+
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+/* ===== TITLE (FINAL PREMIUM) ===== */
+.title-with-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+
+  color: #f7e8bf;
+
+  -webkit-text-stroke: 0.5px #8b6526;
+
+  text-shadow:
+    0 2px 2px rgba(0, 0, 0, 0.25),
+    0 6px 10px rgba(0, 0, 0, 0.25);
+
+  margin-bottom: 5px;
+}
+
+.title-with-icon .icon {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+
+  border-radius: 10px;
+  padding: 6px;
+
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+
+  transition: transform 0.3s ease;
+}
+
+/* ===== ICON ===== */
+.icon-small {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+
+  border-radius: 8px;
+  padding: 4px;
+
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+
+  transition: transform 0.3s ease;
+}
+
+.icon-small:hover {
+  transform: scale(1.1);
+}
+
+/* ===== SUBTITLE ===== */
+.subtitle {
+  text-align: center;
+  color: #f7e8bf;
+  font-size: 14px;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+/* ===== INPUT ===== */
+.floating-group {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.floating-group input {
+  width: 100%;
+  padding: 24px 16px 10px 16px;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+
+  color: #ffffff;
+  font-size: 16px;
+  outline: none;
+
+  transition: all 0.3s ease;
+}
+
+.floating-group label {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  color: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+
+  transition: all 0.3s ease;
+}
+
+.floating-group input:focus + label,
+.floating-group input:not(:placeholder-shown) + label {
+  top: 14px;
+  font-size: 11px;
+  color: #f7e8bf;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.floating-group input:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #f7e8bf;
+  box-shadow: 0 0 15px rgba(247, 232, 191, 0.2);
+}
+
+/* ===== BUTTON ===== */
+.btn-glass-gold {
+  width: 100%;
+  padding: 16px;
+  margin-top: 10px;
+
+  background: linear-gradient(135deg, #c89b3c, #8b6526);
+  border: none;
+  border-radius: 12px;
+
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-glass-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== LINK ===== */
+.auth-link {
+  text-align: center;
+  margin-top: 25px;
+  color: white;
+  font-size: 14px;
+}
+
+.auth-link span {
+  color: #f7e8bf;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ===== MESSAGE ===== */
+.message {
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 13px;
+  backdrop-filter: blur(5px);
+}
+
+.message.error {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ff8787;
+}
+
+/* ===== FIX REGISTER LINK ===== */
+
+.auth-link {
+  text-align: center;
+  margin-top: 25px;
+  color: white;
+  font-size: 14px;
+  position: relative;
+  z-index: 999;
+}
+
+.register-link-btn {
+  background: none;
+  border: none;
+  color: #f7e8bf;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.register-link-btn:hover {
+  color: #ffffff;
+  transform: scale(1.03);
+}
+
+/* Prevent message blocking clicks */
+.message {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.glass-card {
+  position: relative;
+  z-index: 10;
+}
